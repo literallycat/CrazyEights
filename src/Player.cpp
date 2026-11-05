@@ -7,6 +7,10 @@
 #include "../include/Card.h"
 #include "../include/Deck.h"
 
+Player::Player(const std::string& name) {
+    setName(name);
+}
+
 std::list<Card> Player::getCards() {
     return _cards;
 }

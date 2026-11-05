@@ -15,6 +15,7 @@ class Player {
     std::string _name;
     std::list<Card> _cards;
 public:
+    Player(const std::string& name);
     std::list<Card> getCards();
     std::string getName();
     void setName(const std::string& name);
