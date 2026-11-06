@@ -11,6 +11,7 @@ Deck::Deck(const bool discard) {
     _discard = discard;
     if (!discard) {
         _generate();
+        shuffle();
     }
 }
 
@@ -41,6 +42,17 @@ bool Deck::isEmpty() const {
     return false;
 }
 
+Card Deck::getTopCard() const {
+    if (!_discard) {
+        throw std::logic_error("Deck::getTopCard() on draw pile!!");
+    }
+    return _cards.front();
+}
+
+void Deck::addCard(const Card& card) {
+    _cards.insert(_cards.begin(),card);
+}
+
 std::string Deck::Num2Suit(const int number) {
     switch (number) {
         case 0:
@@ -59,7 +71,9 @@ void Deck::_generate() {
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 13; ++j) {
             Card card = _cards.emplace_back(j+1,Num2Suit(i));
+#ifdef SUPERLOGGING
             std::cout << card.getValStr() << " of " << card.getSuit() << std::endl;
+#endif
         }
     }
 }

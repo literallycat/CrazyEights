@@ -3,7 +3,8 @@ project(CrazyEights)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(CrazyEights src/main.cpp
+add_executable(CrazyEights
+        src/main.cpp
         include/Player.h
         src/Player.cpp
        include/Player.h

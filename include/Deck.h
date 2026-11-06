@@ -19,6 +19,8 @@ class Deck {
     Card draw();
     void shuffle();
     [[nodiscard]] bool isEmpty() const;
+    [[nodiscard]] Card getTopCard() const;
+    void addCard(const Card& card);
 
 
 };
