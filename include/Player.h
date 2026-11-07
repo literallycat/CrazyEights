@@ -21,6 +21,10 @@ public:
     void setName(const std::string& name);
     std::list<Card> drawCard(Deck *deck);
     std::list<Card> drawCard(Deck *deck, int number);
+    Card removeCard(Card card);
+    virtual ~Player();
+    virtual Card chooseCard();
+    virtual void mustDraw();
     
 };
 

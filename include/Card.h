@@ -6,20 +6,23 @@
 #ifndef CRAZYEIGHTS_CARD_H
 #define CRAZYEIGHTS_CARD_H
 #include <string>
+#include "vendor/enum.h"
 
-
+BETTER_ENUM(Suit, int, Diamonds,Clubs,Hearts,Spades);
 class Card {
     int _internalVal = 0;
-    std::string suit;
-    public:
-        Card(int value, std::string suit) {
-            this->_internalVal = value;
-            this->suit = suit;
-        }
+    // defualt to make the compiler happy
+    Suit suit = Suit::Diamonds;
+public:
+        Card(int value, Suit suit) {
+        this->_internalVal = value;
+        this->suit = suit;
+    }
+
     [[nodiscard]] int getVal() const {
             return this->_internalVal;
         }
-    std::string getSuit() {
+    [[nodiscard]] Suit getSuit() const {
             return this->suit;
         }
     [[nodiscard]] std::string getValStr() const {
@@ -34,7 +37,14 @@ class Card {
                     return "King";
                 default: return std::to_string(this->_internalVal);
             }
-
         }
-};
+    // operators allow me to use contains-like functions
+    bool operator==(const Card& card) const {
+                if (this->getVal() == card.getVal() && this->getSuit() == card.getSuit()) {
+                    return true;
+                }
+            return false;
+            }
+        };
+
 #endif //CRAZYEIGHTS_CARD_H

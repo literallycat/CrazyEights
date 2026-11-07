@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 4.3)
 project(CrazyEights)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 
 add_executable(CrazyEights
         src/main.cpp
@@ -10,4 +10,7 @@ add_executable(CrazyEights
        include/Player.h
         include/Card.h
         src/Deck.cpp
-        include/Deck.h)
+        include/Deck.h
+        src/GameState.cpp
+        include/GameState.h
+include/vendor/enum.h)

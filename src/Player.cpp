@@ -34,3 +34,8 @@ std::list<Card> Player::drawCard(Deck *deck, int number) {
     }
     return _cards;
 }
+
+Card Player::removeCard(const Card card) {
+    _cards.remove(card);
+    return card;
+}

@@ -4,6 +4,7 @@
 
 #include "../include/Deck.h"
 
+#include <algorithm>
 #include <iostream>
 #include <random>
 
@@ -53,24 +54,24 @@ void Deck::addCard(const Card& card) {
     _cards.insert(_cards.begin(),card);
 }
 
-std::string Deck::Num2Suit(const int number) {
-    switch (number) {
-        case 0:
-            return "Diamonds";
-        case 1:
-            return "Clubs";
-        case 2:
-            return "Hearts";
-        case 3:
-            return "Spades";
-        default: return "";
-    }
-}
+// std::string Deck::Num2Suit(const int number) {
+//     switch (number) {
+//         case 0:
+//             return "Diamonds";
+//         case 1:
+//             return "Clubs";
+//         case 2:
+//             return "Hearts";
+//         case 3:
+//             return "Spades";
+//         default: return "";
+//     }
+// }
 
 void Deck::_generate() {
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 13; ++j) {
-            Card card = _cards.emplace_back(j+1,Num2Suit(i));
+            Card card = _cards.emplace_back(j+1,Suit::_from_integral(i));
 #ifdef SUPERLOGGING
             std::cout << card.getValStr() << " of " << card.getSuit() << std::endl;
 #endif
