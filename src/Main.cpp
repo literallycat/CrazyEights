@@ -1,6 +1,5 @@
 #include <iostream>
 #include <list>
-
 #include "../include/Player.h"
 #include "../include/GameState.h"
 using namespace std;
@@ -25,9 +24,21 @@ int main() {
         cin >> name;
         players.emplace_back(name);
     }
-    new GameState(players);
-
-
-
+    auto game=  GameState(players);
+    game.mainLoop();
     return 0;
+}
+
+
+Card Player::chooseCard() {
+    std::cout << "Choose your card: ";
+    for (auto card: this->_cards) {
+        cout << card.getValStr() << " of " << card.getSuit() << endl;
+    }
+    int selectedCard = std::cin.get();
+    return _cards[selectedCard];
+}
+
+void Player::mustDraw() {
+    // std::cout << "Must draw player" << std::endl;
 }

@@ -11,31 +11,34 @@ Player::Player(const std::string& name) {
     setName(name);
 }
 
-std::list<Card> Player::getCards() {
-    return _cards;
+std::vector<Card> Player::getCards() {
+    return this->_cards;
 }
 
 std::string Player::getName() {
-    return _name;
+    return this->_name;
 }
 
 void Player::setName(const std::string& name) {
-    _name = name;
+    this->_name = name;
 }
 
-std::list<Card> Player::drawCard(Deck *deck) {
-    _cards.push_back(deck->draw());
-    return _cards;
+std::vector<Card> Player::drawCard(Deck *deck) {
+    this->_cards.push_back(deck->draw());
+    return this->_cards;
 }
 
-std::list<Card> Player::drawCard(Deck *deck, int number) {
+std::vector<Card> Player::drawCard(Deck *deck, int number) {
     for (int i = 0; i < number; ++i) {
         drawCard(deck);
     }
-    return _cards;
+    return this->_cards;
 }
 
 Card Player::removeCard(const Card card) {
-    _cards.remove(card);
+    auto it = std::find(this->_cards.begin(), this->_cards.end(), card);
+    if (it != this->_cards.end()) {
+        this->_cards.erase(it);
+    }
     return card;
 }

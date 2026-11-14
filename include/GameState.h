@@ -11,12 +11,15 @@
 
 class GameState {
     void runTurn(Player player);
+    std::list<Player> _players;
     Deck _deck;
     Deck _discard;
     public:
     explicit GameState(const std::list<Player>& players);
+    void mainLoop();
 
-    std::list<Player> players;
 };
+
+
 
 #endif //CRAZYEIGHTS_GAMESTATE_H

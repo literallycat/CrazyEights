@@ -22,8 +22,7 @@ void GameState::runTurn(Player player) {
             player.mustDraw();
         }
     } while (playableCards.empty());
-    Card chosen = player.chooseCard();
-    if (std::ranges::contains(playableCards, chosen)) {
+    if (Card chosen = player.chooseCard(); std::ranges::contains(playableCards, chosen)) {
         _discard.addCard(chosen);
     }
 
@@ -31,7 +30,7 @@ void GameState::runTurn(Player player) {
 
 
 GameState::GameState(const std::list<Player>& players) : _deck(false), _discard(true) {
-    this->players = players;
+    this->_players = players;
     const int NumOfPlayers = players.size();
     for (auto player: players) {
         std::cout << player.getName() << std::endl;
@@ -45,3 +44,13 @@ GameState::GameState(const std::list<Player>& players) : _deck(false), _discard(
     std::cout << "the top card on the discard pile is: " << _discard.getTopCard().getValStr() << " of " << _discard.
             getTopCard().getSuit() << std::endl;
 }
+
+void GameState::mainLoop() {
+    while (true) {
+        for (const Player& player : _players) {
+            runTurn(player);
+        }
+    }
+}
+
+
