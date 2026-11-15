@@ -17,6 +17,7 @@ class GameState {
     public:
     explicit GameState(const std::list<Player>& players);
     void mainLoop();
+    Card getTopCard() const;
 
 };
 

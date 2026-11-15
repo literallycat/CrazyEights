@@ -31,12 +31,16 @@ int main() {
 
 
 Card Player::chooseCard() {
-    std::cout << "Choose your card: ";
+    std::cout << "the top card is: " << this.
+    std::cout << this->getName() << ", Choose your card: " << endl;
+    int counter = 1;
     for (auto card: this->_cards) {
-        cout << card.getValStr() << " of " << card.getSuit() << endl;
+        cout << counter << ": " << card.getValStr() << " of " << card.getSuit() << endl;
+        counter++;
     }
-    int selectedCard = std::cin.get();
-    return _cards[selectedCard];
+    int selectedCard;
+    cin >> selectedCard;
+    return _cards[selectedCard-1];
 }
 
 void Player::mustDraw() {

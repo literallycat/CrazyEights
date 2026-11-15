@@ -36,7 +36,7 @@ std::vector<Card> Player::drawCard(Deck *deck, int number) {
 }
 
 Card Player::removeCard(const Card card) {
-    auto it = std::find(this->_cards.begin(), this->_cards.end(), card);
+    auto it = std::ranges::find(this->_cards.begin(), this->_cards.end(), card);
     if (it != this->_cards.end()) {
         this->_cards.erase(it);
     }
