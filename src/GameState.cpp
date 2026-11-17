@@ -19,13 +19,17 @@ void GameState::runTurn(Player player) {
             }
         }
         if (playableCards.empty()) {
-            player.mustDraw();
+            player.mustDraw(_discard.getTopCard());
         }
     } while (playableCards.empty());
 
-    if (Card chosen = player.chooseCard(); std::ranges::contains(playableCards, chosen)) {
+    if (Card chosen = player.chooseCard(_discard.getTopCard()); std::ranges::contains(playableCards, chosen)) {
         _discard.addCard(chosen);
         player.removeCard(chosen);
+    }
+    if (player.getCards().empty()) {
+        // player won
+        this->playerWon(player);
     }
 
 }
@@ -55,6 +59,17 @@ void GameState::mainLoop() {
 
 Card GameState::getTopCard() const {
     return _discard.getTopCard();
+}
+int GameState::doScoring(Player& player) {
+    int playerScore =0;
+    for (auto players: _players) {
+        if (players.getName() == player.getName()) {
+            continue;
+        }
+        playerScore += players.getHandScore();
+    }
+    player.setScore(player.getPlayerScore() + playerScore);
+    return playerScore;
 }
 
 

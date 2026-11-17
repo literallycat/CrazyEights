@@ -14,16 +14,20 @@
 class Player {
     std::string _name;
     std::vector<Card> _cards;
+    int _score;
 public:
     Player(const std::string& name);
     std::vector<Card> getCards();
     std::string getName();
+    int getHandScore();
+    int getPlayerScore();
+    void setScore(int score);
     void setName(const std::string& name);
     std::vector<Card> drawCard(Deck *deck);
     std::vector<Card> drawCard(Deck *deck, int number);
     Card removeCard(Card card);
-    virtual Card chooseCard();
-    virtual void mustDraw();
+    virtual Card chooseCard(Card topCard);
+    virtual void mustDraw(Card topCard);
     
 };
 

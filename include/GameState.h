@@ -18,7 +18,8 @@ class GameState {
     explicit GameState(const std::list<Player>& players);
     void mainLoop();
     Card getTopCard() const;
-
+    int doScoring(Player& player);
+    virtual void playerWon(Player& player);
 };
 
 

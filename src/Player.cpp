@@ -4,6 +4,8 @@
 
 #include "../include/Player.h"
 
+#include <algorithm>
+
 #include "../include/Card.h"
 #include "../include/Deck.h"
 
@@ -18,6 +20,28 @@ std::vector<Card> Player::getCards() {
 std::string Player::getName() {
     return this->_name;
 }
+
+int Player::getHandScore() {
+    int handValue = 0;
+    for (auto cards: this->_cards) {
+        int cardVal = cards.getVal();
+        if (cardVal == 8) {
+            handValue += 50;
+        } else if (cardVal >=10) {
+            handValue += 10;
+        } else {
+            handValue += cardVal;
+        }
+    }
+    return handValue;
+}
+
+int Player::getPlayerScore() {return this->_score;}
+
+void Player::setScore(int score) {
+    this->_score = score;
+}
+
 
 void Player::setName(const std::string& name) {
     this->_name = name;
