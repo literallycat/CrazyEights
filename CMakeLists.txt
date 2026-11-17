@@ -4,7 +4,6 @@ project(CrazyEights)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(CrazyEights
-        src/main.cpp
         include/Player.h
         src/Player.cpp
        include/Player.h
@@ -14,5 +13,4 @@ add_executable(CrazyEights
         src/GameState.cpp
         include/GameState.h
 include/vendor/enum.h
-        src/interfaces/CommandLine.cpp
-        src/interfaces/CommandLine.h)
+        src/interfaces/CommandLine.cpp)

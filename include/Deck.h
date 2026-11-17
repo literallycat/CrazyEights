@@ -19,6 +19,7 @@ class Deck {
     explicit Deck(bool discard);
     Card draw();
     void shuffle();
+    void injectDeck(Deck& deck);
     [[nodiscard]] bool isEmpty() const;
     // gets the top card but doesnt remove it!!
     [[nodiscard]] Card getTopCard() const;
