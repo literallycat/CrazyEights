@@ -36,7 +36,7 @@ int main() {
 
 
 Card Player::chooseCard(Card topCard) {
-    std::cout << "the top card is: " << topCard.getVal() << " of " << topCard.getSuit() << std::endl;
+    std::cout << "the top card is: " << topCard.getValStr() << " of " << topCard.getSuit() << std::endl;
     std::cout << this->getName() << ", Choose your card: " << endl;
     int counter = 1;
     for (auto card: this->_cards) {
@@ -55,4 +55,28 @@ void Player::mustDraw(Card topCard) {
 void GameState::playerWon(Player &player) {
     std::cout << "player " << player.getName() <<  "won!" << std::endl;
     std::cout << "they now have " << player.getPlayerScore() <<  "points!" << std::endl;
+}
+
+Suit GameState::declareNewSuit() {
+    int selectedSuit;
+    bool valid = false;
+    std::cout << "you played an 8!" << std::endl;
+    while (!valid) {
+        std::cout << "select your desired suit: ";
+        for (size_t index = 0; index < Suit::_size(); ++index) {
+            const char  *name = Suit::_names()[index];
+            std::cout << index+1 << " " << name << " ";
+        }
+        std::cout << std::endl;
+        cin >> selectedSuit;
+    }
+    if (cin.fail() || !Suit::_is_valid(selectedSuit)) {
+        cin.clear();
+        cin.ignore();
+        std::cout << "invalid input! " << std::endl;
+    } else {
+        valid = true;
+    }
+
+    return Suit::_from_integral(selectedSuit-1);
 }

@@ -10,7 +10,7 @@
 
 
 class GameState {
-    void runTurn(Player player);
+    void runTurn(Player& player);
     std::list<Player> _players;
     Deck _deck;
     Deck _discard;
@@ -20,6 +20,7 @@ class GameState {
     Card getTopCard() const;
     int doScoring(Player& player);
     virtual void playerWon(Player& player);
+    virtual Suit declareNewSuit();
 };
 
 

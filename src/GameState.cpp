@@ -9,12 +9,13 @@
 
 
 // im trying the best to make it portable >.< even though i dont need to.....
-void GameState::runTurn(Player player) {
+void GameState::runTurn(Player& player) {
     std::list<Card> playableCards;
     auto discardCard = _discard.getTopCard();
+    // pre-calculate valid card placements
     do {
         for (auto card: player.getCards()) {
-            if (discardCard.getSuit() == card.getSuit() || discardCard.getVal() == card.getVal()) {
+            if (discardCard.getSuit() == card.getSuit() || discardCard.getVal() == card.getVal() || card.getVal() == 8) {
                 playableCards.push_back(card);
             }
         }
@@ -24,7 +25,13 @@ void GameState::runTurn(Player player) {
     } while (playableCards.empty());
 
     if (Card chosen = player.chooseCard(_discard.getTopCard()); std::ranges::contains(playableCards, chosen)) {
-        _discard.addCard(chosen);
+        if (chosen.getVal() == 8) {
+            Suit suit = declareNewSuit();
+            _discard.addCard(Card(8,suit));
+        }
+        else {
+            _discard.addCard(chosen);
+        }
         player.removeCard(chosen);
     }
     if (player.getCards().empty()) {
@@ -51,7 +58,7 @@ GameState::GameState(const std::list<Player>& players) : _deck(false), _discard(
 
 void GameState::mainLoop() {
     while (true) {
-        for (const Player& player : _players) {
+        for (Player& player : _players) {
             runTurn(player);
         }
     }
