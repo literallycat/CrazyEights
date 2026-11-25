@@ -4,6 +4,7 @@
 
 #ifndef CRAZYEIGHTS_GAMESTATE_H
 #define CRAZYEIGHTS_GAMESTATE_H
+#pragma once
 #include <list>
 
 #include "Player.h"

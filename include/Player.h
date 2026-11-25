@@ -4,6 +4,7 @@
 
 #ifndef CRAZYEIGHTS_PLAYER_H
 #define CRAZYEIGHTS_PLAYER_H
+#pragma once
 #include <list>
 #include <string>
 
@@ -26,8 +27,10 @@ public:
     std::vector<Card> drawCard(Deck *deck);
     std::vector<Card> drawCard(Deck *deck, int number);
     Card removeCard(Card card);
+    void win();
     virtual Card chooseCard(Card topCard);
     virtual void mustDraw(Card topCard);
+
     
 };
 

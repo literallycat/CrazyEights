@@ -49,7 +49,8 @@ Card Player::chooseCard(Card topCard) {
 }
 
 void Player::mustDraw(Card topCard) {
-    // std::cout << "Must draw player" << std::endl;
+    std::cout << "Must draw player" << std::endl;
+    this->win();
 }
 
 void GameState::playerWon(Player &player) {
@@ -62,21 +63,22 @@ Suit GameState::declareNewSuit() {
     bool valid = false;
     std::cout << "you played an 8!" << std::endl;
     while (!valid) {
-        std::cout << "select your desired suit: ";
+        std::cout << "select your desired suit: " << std::endl;
         for (size_t index = 0; index < Suit::_size(); ++index) {
             const char  *name = Suit::_names()[index];
-            std::cout << index+1 << " " << name << " ";
+            std::cout << index+1 << ": " << name << " " << std::endl;
         }
         std::cout << std::endl;
         cin >> selectedSuit;
+        if (cin.fail() || !Suit::_is_valid(selectedSuit-1)) {
+            cin.clear();
+            cin.ignore();
+            std::cout << "invalid input! " << std::endl;
+        } else {
+            valid = true;
+        }
     }
-    if (cin.fail() || !Suit::_is_valid(selectedSuit)) {
-        cin.clear();
-        cin.ignore();
-        std::cout << "invalid input! " << std::endl;
-    } else {
-        valid = true;
-    }
+
 
     return Suit::_from_integral(selectedSuit-1);
 }

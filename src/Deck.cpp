@@ -36,6 +36,10 @@ void Deck::shuffle()
     std::ranges::shuffle(this->_cards, g);
 }
 
+// void Deck::injectDeck(Deck &deck) {
+//     _cards.swap()
+// }
+
 bool Deck::isEmpty() const {
     if (_cards.empty()) {
         return true;

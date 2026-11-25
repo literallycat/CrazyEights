@@ -26,5 +26,16 @@ Using a guide on how to use operators i added a feature allowing the c++ standar
 
 Suits are handled with a custom enum library (https://github.com/aantron/better-enums) which allows me to directly cast enums to strings, integers and also do direct comparisons with them easily.
 
+I intentionally designed the program to be extensible with virtual member functions, this allows other code to override the behaviour of a function to change how it works, this is used here to give the program support for multiple frontends.
+
+<img src="Screenshot%202026-11-23%20at%2014.07.10.png" alt="Alt text" width="300" height="50">
+
+this can then be changed by other c++ files.
+
+<img src="Screenshot%202026-11-23%20at%2014.08.04.png" alt="Alt text" width="500" height="200">
+
+
+
+
 
 ###### generated with padoc + weasyprint

@@ -4,6 +4,7 @@
 
 #ifndef CRAZYEIGHTS_DECK_H
 #define CRAZYEIGHTS_DECK_H
+#pragma once
 #include <list>
 #include <vector>
 

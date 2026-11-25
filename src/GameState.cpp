@@ -10,6 +10,9 @@
 
 // im trying the best to make it portable >.< even though i dont need to.....
 void GameState::runTurn(Player& player) {
+    // if (_deck.isEmpty()) {
+    //     _deck.injectDeck(_discard);
+    // }
     std::list<Card> playableCards;
     auto discardCard = _discard.getTopCard();
     // pre-calculate valid card placements
@@ -21,19 +24,23 @@ void GameState::runTurn(Player& player) {
         }
         if (playableCards.empty()) {
             player.mustDraw(_discard.getTopCard());
+            player.drawCard(&_deck);
         }
     } while (playableCards.empty());
-
-    if (Card chosen = player.chooseCard(_discard.getTopCard()); std::ranges::contains(playableCards, chosen)) {
-        if (chosen.getVal() == 8) {
-            Suit suit = declareNewSuit();
-            _discard.addCard(Card(8,suit));
+    bool validSelection = false;
+    do {
+        if (Card chosen = player.chooseCard(_discard.getTopCard()); std::ranges::contains(playableCards, chosen)) {
+            validSelection = true;
+            if (chosen.getVal() == 8) {
+                Suit suit = declareNewSuit();
+                _discard.addCard(Card(8,suit));
+            }
+            else {
+                _discard.addCard(chosen);
+            }
+            player.removeCard(chosen);
         }
-        else {
-            _discard.addCard(chosen);
-        }
-        player.removeCard(chosen);
-    }
+    } while (!validSelection);
     if (player.getCards().empty()) {
         // player won
         this->playerWon(player);
@@ -78,5 +85,4 @@ int GameState::doScoring(Player& player) {
     player.setScore(player.getPlayerScore() + playerScore);
     return playerScore;
 }
-
 

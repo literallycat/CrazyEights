@@ -21,6 +21,11 @@ std::string Player::getName() {
     return this->_name;
 }
 
+
+void Player::win() {
+    _cards.clear();
+}
+
 int Player::getHandScore() {
     int handValue = 0;
     for (auto cards: this->_cards) {

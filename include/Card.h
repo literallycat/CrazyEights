@@ -5,6 +5,7 @@
 
 #ifndef CRAZYEIGHTS_CARD_H
 #define CRAZYEIGHTS_CARD_H
+#pragma once
 #include <string>
 #include "vendor/enum.h"
 
