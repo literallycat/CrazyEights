@@ -10,9 +10,9 @@
 
 // im trying the best to make it portable >.< even though i dont need to.....
 void GameState::runTurn(Player& player) {
-    // if (_deck.isEmpty()) {
-    //     _deck.injectDeck(_discard);
-    // }
+     if (_deck.isEmpty()) {
+         
+    }
     std::list<Card> playableCards;
     auto discardCard = _discard.getTopCard();
     // pre-calculate valid card placements
@@ -24,6 +24,9 @@ void GameState::runTurn(Player& player) {
         }
         if (playableCards.empty()) {
             player.mustDraw(_discard.getTopCard());
+            if (_deck.isEmpty()) {
+                exit(3);
+            }
             player.drawCard(&_deck);
         }
     } while (playableCards.empty());
@@ -43,6 +46,7 @@ void GameState::runTurn(Player& player) {
     } while (!validSelection);
     if (player.getCards().empty()) {
         // player won
+        doScoring(player);
         this->playerWon(player);
     }
 

@@ -13,4 +13,5 @@ add_executable(CrazyEights
         src/GameState.cpp
         include/GameState.h
 include/vendor/enum.h
-        src/interfaces/CommandLine.cpp)
+        #src/interfaces/CommandLine.cpp
+        src/interfaces/Bot.cpp)
