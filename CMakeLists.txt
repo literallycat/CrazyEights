@@ -3,8 +3,12 @@ project(CrazyEights)
 
 set(CMAKE_CXX_STANDARD 23)
 
+option(COMMANDLINE, "Enable Command Line only" ON)
+option(BOT, "simulate player play" OFF)
+
+
+
 add_executable(CrazyEights
-        include/Player.h
         src/Player.cpp
        include/Player.h
         include/Card.h
@@ -12,6 +16,14 @@ add_executable(CrazyEights
         include/Deck.h
         src/GameState.cpp
         include/GameState.h
-include/vendor/enum.h
-        #src/interfaces/CommandLine.cpp
-        src/interfaces/Bot.cpp)
+include/vendor/enum.h)
+
+target_include_directories(CrazyEights PRIVATE include)
+
+if(BOT)
+    target_sources(CrazyEights PRIVATE src/interfaces/Bot.cpp)
+elseif(COMMANDLINE)
+    target_sources(CrazyEights PRIVATE src/interfaces/CommandLine.cpp)
+else()
+    message(FATAL_ERROR "Either BOT or COMMANDLINE must be ON.")
+endif()

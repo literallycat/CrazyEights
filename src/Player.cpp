@@ -11,6 +11,8 @@
 
 Player::Player(const std::string& name) {
     setName(name);
+    // thanks macOS for hiding this bug from me
+    _score = 0;
 }
 
 std::vector<Card> Player::getCards() {
