@@ -24,10 +24,6 @@ std::string Player::getName() {
 }
 
 
-void Player::win() {
-    _cards.clear();
-}
-
 int Player::getHandScore() {
     int handValue = 0;
     for (auto cards: this->_cards) {
@@ -65,7 +61,7 @@ std::vector<Card> Player::drawCard(Deck *deck, int number) {
     }
     return this->_cards;
 }
-
+// uses the operator created in the card class
 Card Player::removeCard(const Card card) {
     auto it = std::ranges::find(this->_cards.begin(), this->_cards.end(), card);
     if (it != this->_cards.end()) {

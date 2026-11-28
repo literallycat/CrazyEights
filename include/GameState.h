@@ -15,6 +15,7 @@ class GameState {
     std::list<Player> _players;
     Deck _deck;
     Deck _discard;
+    void swapDecks();
     public:
     explicit GameState(const std::list<Player>& players);
     void mainLoop();

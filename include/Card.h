@@ -12,7 +12,7 @@
 BETTER_ENUM(Suit, int, Diamonds,Clubs,Hearts,Spades);
 class Card {
     int _internalVal = 0;
-    // defualt to make the compiler happy
+    // default to make the compiler happy
     Suit suit = Suit::Diamonds;
 public:
         Card(int value, Suit suit) {

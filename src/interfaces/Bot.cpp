@@ -13,7 +13,7 @@
 using namespace std;
 
 int main() {
-    std::array<std::string,7> botName = {"Justin", "James", "April", "Jane", "Quinn", "Noelle", "Sophie"};
+    std::array<std::string,7> botName = {"April", "Jane", "Quinn", "Noelle", "Sophie","Nina","Lowri"};
     int NumOfPlayers;
     list<Player> players;
     do{
@@ -25,9 +25,11 @@ int main() {
             cout << "enter number pls :( " << endl;
         } else if (NumOfPlayers <= 1 ) {
             cout << "too little players to start a game!" << endl;
+        } else if (NumOfPlayers > 7 ) {
+            cout << "too many players to start a game!" << endl;
         }
-    } while (NumOfPlayers <=     1);
-    for (int i = 1; i <= NumOfPlayers; i++) {
+    } while (NumOfPlayers <= 1);
+    for (int i = 0; i <= NumOfPlayers-1; i++) {
         players.emplace_back(botName[i]);
     }
     auto game=  GameState(players);

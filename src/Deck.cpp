@@ -58,6 +58,10 @@ void Deck::addCard(const Card& card) {
     _cards.insert(_cards.begin(),card);
 }
 
+void Deck::flip() {
+    _discard = !_discard;
+}
+
 // std::string Deck::Num2Suit(const int number) {
 //     switch (number) {
 //         case 0:

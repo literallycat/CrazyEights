@@ -21,6 +21,8 @@ int main() {
             cout << "enter number pls :( " << endl;
         } else if (NumOfPlayers <= 1 ) {
             cout << "too little players to start a game!" << endl;
+        }else if (NumOfPlayers > 7 ) {
+            cout << "too many players to start a game!" << endl;
         }
     } while (NumOfPlayers <=     1);
     for (int i = 0; i < NumOfPlayers; i++) {
@@ -50,7 +52,7 @@ Card Player::chooseCard(Card topCard) {
 
 void Player::mustDraw(Card topCard) {
     std::cout << "Must draw player" << std::endl;
-    this->win();
+
 }
 
 void GameState::playerWon(Player &player) {

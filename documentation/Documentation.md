@@ -67,5 +67,56 @@ For security reasons, macOS will zero out memory pages once they are freed, howe
 
 This was an easy fix by just setting the value of `_score` to 0 in the constructor so its always initialised.
 
+To find edge cases late in development, i created a special bot interface that would simulate a number of the people playing the game very quickly, this testing helped discover multiple bugs in the program including the above-mentioned scoring bug and also issues with declaring suits.
+
+In conclusion this project helped me refresh my memory in c++ and introduced me to some practices that I wasn't fully familiar with.
+
+
+
+
+## The Number Guessing Engine
+
+The second project we were tasked with creating was a number guessing game.
+
+The program would roll a random number between 1-100 and the user would have to guess what the number is, only being given "too high" or "too low" responses.
+
+While this project was the easiest, I ended up neglecting the project due to this and also my reduced knowledge in python from not using it for a few years.
+
+I started off by implementing the bare amount to get the basic idea of the program functional, which was
+
+* Generating a random number
+* Checking player input
+* Responding whether it was too high or too low
+* ending the program if they got the right answer
+
+![](img_5.png)
+
+I made sure to add robust input checking preventing floating point entries, numbers greater than 100 and less than 1. the try; except block will catch all non number input, when invalid input is entered it will repeat the question until the input is valid.
+
+Every guess increments a "tries" variable that is used for the leaderboard.
+
+After a correct guess, the program asks for initials so that it can write your score to the leaderboard, this contains checking to make sure that it doesn't exceed 3 characters, after this it gets written to a 2D array and the player is asked if they want to play again.
+
+![](img_6.png)
+
+To meet the requirement the leaderboard must be sorted but using an algorithm implemented by hand instead of included in any library
+
+The leaderboard class contains a function that calls my sorting algorithm in a seperate file. The algorithm I chose was heapsort. It works by creating a binary tree of the values, then moves the biggest element in that tree to the end. This is repeated until the list is sorted.
+
+While slower than other algorithms such as quicksort, it is simpler to implement and has a better worst case performance of O(n log n).
+
+I referenced two sites containing pseudocode in order to help me implement this algorithm
+
+ https://fullyunderstood.com/pseudocodes/heap-sort/
+
+ https://sites.cc.gatech.edu/classes/cs3158_98_fall/heapsort.html
+
+After this, I modified the algorithm to make sure that it was aware of the fact that I was using a 2-dimensional array to implement both names and guesses 
+
+![](img_7.png)
+
+I added a small test to the algorithm that I could independently verify that the algorithm was functional
+
+![](img_8.png)
 
 ###### generated with padoc + weasyprint

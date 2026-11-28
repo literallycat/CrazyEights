@@ -11,7 +11,7 @@
 // im trying the best to make it portable >.< even though i dont need to.....
 void GameState::runTurn(Player& player) {
      if (_deck.isEmpty()) {
-         
+         swapDecks();
     }
     std::list<Card> playableCards;
     auto discardCard = _discard.getTopCard();
@@ -25,7 +25,7 @@ void GameState::runTurn(Player& player) {
         if (playableCards.empty()) {
             player.mustDraw(_discard.getTopCard());
             if (_deck.isEmpty()) {
-                exit(3);
+                swapDecks();
             }
             player.drawCard(&_deck);
         }
@@ -52,6 +52,16 @@ void GameState::runTurn(Player& player) {
 
 }
 
+
+void GameState::swapDecks() {
+    std::swap(_deck, _discard);
+    _deck.flip();
+    _discard.flip();
+    Card discardCard = _deck.draw();
+    _discard.addCard(discardCard);
+    _deck.shuffle();
+    std::cout << "swap!";
+}
 
 GameState::GameState(const std::list<Player>& players) : _deck(false), _discard(true) {
     this->_players = players;

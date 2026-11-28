@@ -27,7 +27,6 @@ public:
     std::vector<Card> drawCard(Deck *deck);
     std::vector<Card> drawCard(Deck *deck, int number);
     Card removeCard(Card card);
-    void win();
     virtual Card chooseCard(Card topCard);
     virtual void mustDraw(Card topCard);
 
